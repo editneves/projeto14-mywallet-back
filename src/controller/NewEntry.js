@@ -4,15 +4,11 @@ import db from "../config/database.js";
 export async function listNewEntry(req, res) {
     try {
       const dados = await db.collection("entrada").find().toArray()
-  
-      console.log(dados)
-  
       return res.send(dados)
     } catch (error) {
       res.status(500).send("Ocorreu algum erro desconhecido no servidor")
     }
   }
-
 
 export async function createNewEntry(req, res) {
   const entrada = req.body;
@@ -22,7 +18,7 @@ export async function createNewEntry(req, res) {
   if (!token) return res.status(422).send("Informe o token!");
 
   const validation = NewEntrySchema.validate(entrada, {
-    pick: ["descricao", "valor"],
+    pick: ["valor", "descricao"],
     abortEarly: false,
   });
 

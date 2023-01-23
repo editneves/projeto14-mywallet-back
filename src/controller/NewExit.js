@@ -22,7 +22,7 @@ export async function createNewExit(req, res) {
   if (!token) return res.status(422).send("Informe o token!");
 
   const validation = NewExitSchema.validate(saida, {
-    pick: ["descricao", "valor"],
+    pick: ["valor", "descricao"],
     abortEarly: false,
   });
 

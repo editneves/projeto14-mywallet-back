@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 import { v4 as uuidV4 } from 'uuid'
 import db from '../config/database.js'
-//import { usuarioSchema } from '../Model/AuthSchema.js'
+import { usuarioSchema } from '../Model/AuthSchema.js'
 
 export async function signUp(req, res) {
   const { name, email, password, confirmPassword } = req.body
@@ -35,11 +35,11 @@ export async function signIn(req, res) {
     if (!checkUser) return res.status(400).send("Usuário ou senha incorretos")
 
     const isCorrectPassword = bcrypt.compareSync(password, checkUser.password)
-
+    
     if (!isCorrectPassword) return res.status(400).send("Usuário ou senha incorretos")
 
     const token = uuidV4();
-
+    console.log(token)
     await db.collection("sessoes").insertOne({ idUsuario: checkUser._id, token })
 
     return res.status(200).send(token)

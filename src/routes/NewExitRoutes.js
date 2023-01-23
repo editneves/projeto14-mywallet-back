@@ -7,7 +7,7 @@ import {
   const NewExitRouter = Router()
   
   // Rotas de saida de valores
-  NewExitRouter.get("/entrada", listNewExit)
-  NewExitRouter.post("/entrada", createNewExit)
+  NewExitRouter.get("/saidaList", listNewExit)
+  NewExitRouter.post("/saidaCreate", createNewExit)
   
   export default NewExitRouter
